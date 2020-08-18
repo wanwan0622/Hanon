@@ -16,8 +16,29 @@ for i in range(7):
             else:
                 random_num[i] = random.randint(0, 6)
 
+
+
 #楽譜をかくよ
+
 noteList = []
+s = stream.Score()
+
+stream_right = stream.Part()
+stream_left = stream.Part()
+
+inst1 = instrument.Instrument()
+inst2 = instrument.Instrument()
+
+stream_right.append(inst1)
+stream_left.append(inst2)
+
+tc = clef.TrebleClef() #ト音記号
+bc = clef.BassClef() #ヘ音記号
+
+stream_right.append(tc)
+stream_left.append(bc)
+
+
 ##最初のド
 n = note.Note("C4", quarterLength = 0.25)
 noteList.append(n)
