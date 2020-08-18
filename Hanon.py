@@ -21,7 +21,7 @@ for i in range(1,8):
 
 #楽譜をかくよ
 
-
+##なんか最初のおまじない
 stream_right = stream.Part()
 stream_left = stream.Part()
 
@@ -40,28 +40,25 @@ stream_left.append(bc)
 otos = ["C2", "D2", "E2", "F2", "G2", "A2", "B2", "C3", "D3", "E3", "F3", "G3", "A3", "B3", "C4", "D4", "E4", "F4", "G4", "A4", "B4", "C5", "D5", "E5", "F5", "G5", "A5", "B5", "C6"]
 
 ##右手
-###最初のド
 meas = stream.Measure()
-#n = note.Note("C3", quarterLength = 0.25)
-#meas.append(n)
-###1小節目の残りの音
-for i in range(8):
-    oto = note.Note(otos[random_num[i] + 7], quarterLength = 0.25)
-    meas.append(oto)
+###1小節目
+for j in range(14):
+    for i in range(8):
+        oto = note.Note(otos[random_num[i] + 7 + j], quarterLength = 0.25)
+        meas.append(oto)
 stream_right.append(meas)
 
 ##左手
-###最初のド
 meas = stream.Measure()
-#n = note.Note("C2", quarterLength = 0.25)
-#meas.append(n)
-###1小節目の残りの音
-for i in range(8):
-    oto = note.Note(otos[random_num[i]], quarterLength = 0.25)
-    meas.append(oto)
+###1小節目
+for j in range(14):
+    for i in range(8):
+        oto = note.Note(otos[random_num[i] + j], quarterLength = 0.25)
+        meas.append(oto)
 stream_left.append(meas)
 
 
+##最後のおまじない
 s = stream.Score()
 s.append(stream_right)
 s.append(stream_left)
