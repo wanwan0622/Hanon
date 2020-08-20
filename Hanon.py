@@ -39,7 +39,7 @@ bc = clef.BassClef() #ヘ音記号
 stream_right.append(tc)
 stream_left.append(bc)
 
-otos = ["C1", "D1", "E1", "F1", "G1", "A1", "B1", "C2", "D2", "E2", "F2", "G2", "A2", "B2", "C3", "D3", "E3", "F3", "G3", "A3", "B3", "C4", "D4", "E4", "F4", "G4", "A4", "B4", "C5", "D5", "E5", "F5", "G5", "A5", "B5", "C6"]
+sounds = ["C1", "D1", "E1", "F1", "G1", "A1", "B1", "C2", "D2", "E2", "F2", "G2", "A2", "B2", "C3", "D3", "E3", "F3", "G3", "A3", "B3", "C4", "D4", "E4", "F4", "G4", "A4", "B4", "C5", "D5", "E5", "F5", "G5", "A5", "B5", "C6"]
 
 
 
@@ -47,44 +47,23 @@ otos = ["C1", "D1", "E1", "F1", "G1", "A1", "B1", "C2", "D2", "E2", "F2", "G2", 
 for i in range(14): #のぼり
     ###1小節目
     meas = stream.Measure()
-    n0 = note.Note(otos[random_num[0] + 14 + i], quarterLength = 0.25)
-    meas.append(n0)
-    n1 = note.Note(otos[random_num[1] + 14 + i], quarterLength = 0.25)
-    meas.append(n1)
-    n2 = note.Note(otos[random_num[2] + 14 + i], quarterLength = 0.25)
-    meas.append(n2)
-    n3 = note.Note(otos[random_num[3] + 14 + i], quarterLength = 0.25)
-    meas.append(n3)
-    n4 = note.Note(otos[random_num[4] + 14 + i], quarterLength = 0.25)
-    meas.append(n4)
-    n5 = note.Note(otos[random_num[5] + 14 + i], quarterLength = 0.25)
-    meas.append(n5)
-    n6 = note.Note(otos[random_num[6] + 14 + i], quarterLength = 0.25)
-    meas.append(n6)
-    n7 = note.Note(otos[random_num[7] + 14 + i], quarterLength = 0.25)
-    meas.append(n7)
+    for j in range(8):
+        n_right_up = note.Note(sounds[random_num[j] + 14 + i], quarterLength = 0.25)
+        meas.append(n_right_up)
     stream_right.append(meas)
+
 for i in range(14): #くだり
     ###1小節目
     meas = stream.Measure()
     x = 18
-    n0 = note.Note(otos[x + 14 - i], quarterLength = 0.25)
-    meas.append(n0)
-    n1 = note.Note(otos[x - random_num[1] + 14 - i], quarterLength = 0.25)
-    meas.append(n1)
-    n2 = note.Note(otos[x - random_num[2] + 14 - i], quarterLength = 0.25)
-    meas.append(n2)
-    n3 = note.Note(otos[x - random_num[3] + 14 - i], quarterLength = 0.25)
-    meas.append(n3)
-    n4 = note.Note(otos[x - random_num[4] + 14 - i], quarterLength = 0.25)
-    meas.append(n4)
-    n5 = note.Note(otos[x - random_num[5] + 14 - i], quarterLength = 0.25)
-    meas.append(n5)
-    n6 = note.Note(otos[x - random_num[6] + 14 - i], quarterLength = 0.25)
-    meas.append(n6)
-    n7 = note.Note(otos[x - random_num[7] + 14 - i], quarterLength = 0.25)
-    meas.append(n7)
+    for j in range(8):
+        if i == 0:
+            n_right_down = note.Note(sounds[x + 14 - i], quarterLength = 0.25)
+        else:
+            n_right_down = note.Note(sounds[x - random_num[j] + 14 - i], quarterLength = 0.25)
+        meas.append(n_right_down)
     stream_right.append(meas)
+
 ###最後の小節
 meas = stream.Measure()
 n = note.Note("C3", quarterLength = 2)
@@ -96,50 +75,28 @@ stream_right.append(meas)
 for i in range(14): #のぼり
     ###1小節目
     meas = stream.Measure()
-    n0 = note.Note(otos[random_num[0] + 7 + i], quarterLength = 0.25)
-    meas.append(n0)
-    n1 = note.Note(otos[random_num[1] + 7 + i], quarterLength = 0.25)
-    meas.append(n1)
-    n2 = note.Note(otos[random_num[2] + 7 + i], quarterLength = 0.25)
-    meas.append(n2)
-    n3 = note.Note(otos[random_num[3] + 7 + i], quarterLength = 0.25)
-    meas.append(n3)
-    n4 = note.Note(otos[random_num[4] + 7 + i], quarterLength = 0.25)
-    meas.append(n4)
-    n5 = note.Note(otos[random_num[5] + 7 + i], quarterLength = 0.25)
-    meas.append(n5)
-    n6 = note.Note(otos[random_num[6] + 7 + i], quarterLength = 0.25)
-    meas.append(n6)
-    n7 = note.Note(otos[random_num[7] + 7 + i], quarterLength = 0.25)
-    meas.append(n7)
+    for j in range(8):
+        n_left_up = note.Note(sounds[random_num[j] + 7 + i], quarterLength = 0.25)
+        meas.append(n_left_up)
     stream_left.append(meas)
+
 for i in range(14): #くだり
     ###1小節目
     meas = stream.Measure()
     x = 18
-    n0 = note.Note(otos[x + 7 - i], quarterLength = 0.25)
-    meas.append(n0)
-    n1 = note.Note(otos[x - random_num[1] + 7 - i], quarterLength = 0.25)
-    meas.append(n1)
-    n2 = note.Note(otos[x - random_num[2] + 7 - i], quarterLength = 0.25)
-    meas.append(n2)
-    n3 = note.Note(otos[x - random_num[3] + 7 - i], quarterLength = 0.25)
-    meas.append(n3)
-    n4 = note.Note(otos[x - random_num[4] + 7 - i], quarterLength = 0.25)
-    meas.append(n4)
-    n5 = note.Note(otos[x - random_num[5] + 7 - i], quarterLength = 0.25)
-    meas.append(n5)
-    n6 = note.Note(otos[x - random_num[6] + 7 - i], quarterLength = 0.25)
-    meas.append(n6)
-    n7 = note.Note(otos[x - random_num[7] + 7 - i], quarterLength = 0.25)
-    meas.append(n7)
+    for j in range(8):
+        if i == 0:
+            n_left_down = note.Note(sounds[x + 7 - i], quarterLength = 0.25)
+        else:
+            n_left_down = note.Note(sounds[x - random_num[j] + 7 - i], quarterLength = 0.25)
+        meas.append(n_left_down)
     stream_left.append(meas)
+
 ###最後の小節
 meas = stream.Measure()
 n = note.Note("C2", quarterLength = 2)
 meas.append(n)
 stream_left.append(meas)
-
 
 
 ##最後のおまじない
