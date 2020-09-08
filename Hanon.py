@@ -5,20 +5,40 @@ import matplotlib
 import scipy
 import random
 
+#難易度調整
+## E => 簡単, D => 難しい
+print("難易度を入力してください")
+print("簡単ならEを、難しいならDを入力してください")
+diff = str(input())
 
 
 #乱数生成
 random_num = [-1 for _ in range(8)]
 random_num[0] = 0
-for i in range(1,8):
-    random_num[i] = random.randint(1, 7)
-    if i >= 1: #前の音符と同じ音符がかぶらないようにする
-        while True:
-            if random_num[i] != random_num[i-1]:
-                break
-            else:
-                random_num[i] = random.randint(1, 7)
-
+if diff == 'E':
+    for i in range(1,8):
+        random_num[i] = random.randint(1, 3)
+        if i >= 1: #前の音符と同じ音符がかぶらないようにする
+            while True:
+                if random_num[i] != random_num[i-1]:
+                    break
+                else:
+                    random_num[i] = random.randint(1, 3)
+        if i == 7: #小節の最後の音が次の小節の最初の音とかぶらないようにする
+            while random_num[i] == random_num[0] + 1:
+                random_num[i] = random.randint(1, 3)
+if diff == 'D':
+    for i in range(1,8):
+        random_num[i] = random.randint(4, 7)
+        if i >= 1: #前の音符と同じ音符がかぶらないようにする
+            while True:
+                if random_num[i] != random_num[i-1]:
+                    break
+                else:
+                    random_num[i] = random.randint(4, 7)
+        if i == 7: #小節の最後の音が次の小節の最初の音とかぶらないようにする
+            while random_num[i] == random_num[0] + 1:
+                random_num[i] = random.randint(4, 7)
 
 
 #楽譜をかくよ
@@ -57,7 +77,7 @@ for i in range(14): #くだり
     meas = stream.Measure()
     x = 18
     for j in range(8):
-        if i == 0:
+        if j == 0:
             n_right_down = note.Note(sounds[x + 14 - i], quarterLength = 0.25)
         else:
             n_right_down = note.Note(sounds[x - random_num[j] + 14 - i], quarterLength = 0.25)
@@ -85,7 +105,7 @@ for i in range(14): #くだり
     meas = stream.Measure()
     x = 18
     for j in range(8):
-        if i == 0:
+        if j == 0:
             n_left_down = note.Note(sounds[x + 7 - i], quarterLength = 0.25)
         else:
             n_left_down = note.Note(sounds[x - random_num[j] + 7 - i], quarterLength = 0.25)
